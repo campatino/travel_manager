@@ -1,0 +1,35 @@
+<div class="col-md-12">
+    <p id="notice"><%= notice %></p>
+</div>
+
+<div class="col-md-12">
+    <h1>Travels</h1>
+</div>
+
+<div class="col-md-12 table-responsive">
+    <table class="table datatable">
+        <thead>
+            <tr>
+                <th>Passenger</th>
+                <th>Vehicle</th>
+                <th>Start point</th>
+                <th>End point</th>                
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @routes.each do |route| %>
+            <tr>
+                <td><%= link_to route.passenger.name, passenger_path(route.passenger_id) %></td>
+                <td><%= link_to route.vehicle.plate, vehicle_path(route.vehicle_id) %></td>
+                <td><%= route.start_point %></td>
+                <td><%= route.end_point %></td>
+                <td><%= route.status_to_s %></td>
+                <td style="text-align: center;"><%= link_to 'Show', route %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

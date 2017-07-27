@@ -1,0 +1,33 @@
+<div class="col-md-12">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="panel-heading">
+				<h3 class="panel-title">Welcome to Travel Admin!</h3>
+				<small>Please type in tour credentials.</small>
+			</div>
+			<div class="panel-body">
+				<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					<%= devise_error_messages! %>
+					<fieldset>
+						<div class="form-group">
+							<%= f.label :email %>
+							<%= f.email_field :email, class: "form-control", autofocus: true %>
+						</div>
+						<div class="form-group">
+							<%= f.label :password %>
+							<%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+						</div>
+						<% if devise_mapping.rememberable? -%>
+						<div class="checkbox" style="text-align: right;">
+							<label>
+								<%= f.check_box :remember_me %> Remember Me
+							</label>
+						</div>
+						<% end -%>
+						<%= f.submit "Log in", class: "btn btn-sm btn-success pull-right" %>
+					</fieldset>
+				<% end %>				
+			</div>
+		</div>
+	</div>
+</div>

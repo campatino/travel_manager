@@ -1,0 +1,33 @@
+<%= form_for(@passenger) do |f| %>
+	<% if @passenger.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@passenger.errors.count, "error") %> prohibited this passenger from being saved:</h2>
+
+		<ul>
+			<% @passenger.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<table class="table">
+		<tr>
+			<td><%= f.label :name %></td>
+			<td><%= f.text_field :name, class: "form-control", required: true, autofocus: true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :cellphone %></td>
+			<td><%= f.text_field :cellphone, class: "form-control", required: false %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :status %></td>
+			<td><%= f.select :status, options_for_select(Passenger.status_for_selectable, @passenger.status),  {:include_blank => "Select status"}, {class: "form-control", required: true} %></td>
+		</tr>
+	</table>
+
+	
+	<div class="actions">
+		<%= f.submit "Create", class: "btn btn-primary" %>
+	</div>
+<% end %>

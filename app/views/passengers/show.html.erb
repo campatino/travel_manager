@@ -1,0 +1,61 @@
+<div class="col-md-12">
+    <p id="notice"><%= notice %></p>
+</div>
+
+<div class="col-md-12">
+    <h1>Passenger Details</h1>
+</div>
+
+<div class="col-md-12">
+    <table class="table">
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td><%= @passenger.name %></td>
+        </tr>
+        <tr>
+            <td><strong>Cellphone:</strong></td>
+            <td><%= @passenger.cellphone %></td>
+        </tr>
+        <tr>
+            <td><strong>Status:</strong></td>
+            <td><%= @passenger.status_to_s %></td>
+        </tr>
+    </table>
+    <div style="text-align: right;">
+        <%= link_to "Edit", edit_passenger_path(@passenger) %> |
+        <%= link_to "Back", passengers_path %>    
+    </div>
+</div>
+
+
+
+<div class="col-md-12">
+    <h2>Passenger's routes</h2>
+</div>
+
+<div class="col-md-12 table-responsive">
+    <table class="table datatable">
+        <thead>
+            <tr>
+                <th>Start point</th>
+                <th>End point</th>
+                <th>Vehicle</th>
+                
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @passenger.routes.each do |route| %>
+            <tr>
+                <td><%= route.start_point %></td>
+                <td><%= route.end_point %></td>
+                <td><%= link_to route.vehicle.plate, vehicle_path(route.vehicle_id) %></td>
+                <td><%= route.status_to_s %></td>
+                <td style="text-align: center;"><%= link_to "Show", route %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

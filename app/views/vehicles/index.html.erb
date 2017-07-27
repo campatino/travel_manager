@@ -1,0 +1,39 @@
+<div class="col-md-12">
+	<p id="notice"><%= notice %></p>
+</div>
+
+<div class="col-md-12">
+	<h1>Vehicles <%= link_to "New", new_vehicle_path, class: "btn btn-primary pull-right" %></h1>
+</div>
+
+<div class="col-md-12 table-responsive">
+	<table class="table datatable">
+		<thead>
+			<tr>
+				<th>Plate</th>
+				<th>Category</th>
+				<th>Color</th>
+				<th>Year</th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @vehicles.each do |vehicle| %>
+			<tr>
+				<td><%= link_to vehicle.plate, vehicle %></td>
+				<td><%= vehicle.category_name %></td>
+				<td><%= vehicle.color %></td>
+				<td><%= vehicle.year %></td>
+				<td><%= vehicle.status_to_s %></td>
+				<td style="text-align: center;">
+					<%= link_to "Show", vehicle %> | 
+					<%= link_to "Edit", edit_vehicle_path(vehicle) %> | 
+					<%= link_to "Destroy", vehicle, method: :delete, data: { confirm: "About to DELETE vehicle #{vehicle.plate}. Are you sure?" } %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

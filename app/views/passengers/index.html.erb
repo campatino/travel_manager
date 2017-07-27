@@ -1,0 +1,37 @@
+<div class="col-md-12">
+	<p id="notice"><%= notice %></p>
+</div>
+
+<div class="col-md-12">
+	<h1>Passengers <%= link_to "New", new_passenger_path, class: "btn btn-primary pull-right" %></h1>
+</div>
+
+<div class="col-md-12 table-responsive">
+	<table class="table datatable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Cellphone</th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @passengers.each do |passenger| %>
+			<tr>
+				<td><%= link_to passenger.name, passenger %></td>
+				<td><%= passenger.cellphone %></td>
+				<td><%= passenger.status_to_s %></td>
+				<td style="text-align: center;">
+					<%= link_to "Show", passenger %> | 
+					<%= link_to "Edit", edit_passenger_path(passenger) %> | 
+					<%= link_to "Destroy", passenger, method: :delete, data: { confirm: "About to DELETE #{passenger.name}. Are you sure?" } %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+

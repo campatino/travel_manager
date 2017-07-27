@@ -1,0 +1,68 @@
+<div class="col-md-12">
+	<p id="notice"><%= notice %></p>
+</div>
+
+<div class="col-md-12">
+	<h1>Vehicle Details</h1>
+</div>
+
+<div class="col-md-12 table-responsive">
+	<table class="table">
+		<tr>
+			<td><strong>Plate:</strong></td>
+			<td><%= @vehicle.plate %></td>
+		</tr>
+		<tr>
+			<td><strong>Category:</strong></td>
+			<td><%= @vehicle.category_name %></td>
+		</tr>
+		<tr>
+			<td><strong>Color:</strong></td>
+			<td><%= @vehicle.color %></td>
+		</tr>
+		<tr>
+			<td><strong>Year:</strong></td>
+			<td><%= @vehicle.year %></td>
+		</tr>
+		<tr>
+			<td><strong>Status:</strong></td>
+			<td><%= @vehicle.status_to_s %></td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="col-md-12">
+	<h2>Vehicle's routes</h2>
+</div>
+
+<div class="col-md-12 table-responsive">
+	<table class="table datatable">
+		<thead>
+			<tr>
+				<th>Start point</th>
+				<th>End point</th>
+				<th>Passenger</th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @vehicle.routes.each do |route| %>
+			<tr>
+				<td><%= route.start_point %></td>
+				<td><%= route.end_point %></td>
+				<td><%= link_to route.passenger.name, passenger_path(route.passenger_id) %></td>
+				<td><%= route.status_to_s %></td>
+				<td style="text-align: center;"><%= link_to "Show", route %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<div class="col-md-12">
+	<%= link_to "Edit", edit_vehicle_path(@vehicle) %> |
+	<%= link_to "Back", vehicles_path %>
+</div>
+

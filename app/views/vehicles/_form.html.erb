@@ -1,0 +1,36 @@
+<%= form_for(@vehicle) do |f| %>
+	<% if @vehicle.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
+
+		<ul>
+			<% @vehicle.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<table class="table">
+		<tr>
+			<td><%= f.label :plate %></td>
+			<td><%= f.text_field :plate, class: "form-control", required: true, autofocus: true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :color %></td>
+			<td><%= f.text_field :color, class: "form-control", required: true, autofocus: true %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :year %></td>
+			<td><%= f.select :year, options_for_select(Vehicle.years_for_selectable, @vehicle.year), {include_blank: "Select a year"}, {class: "form-control", required: true} %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :status %></td>
+			<td><%= f.select :status, options_for_select(Vehicle.status_for_selectable, @vehicle.status),  {:include_blank => "Select status"}, {class: "form-control", required: true} %></td>
+		</tr>
+	</table>
+
+	<div class="actions">
+		<%= f.submit "Create", class: "btn btn-primary" %>
+	</div>
+<% end %>

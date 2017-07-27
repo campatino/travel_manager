@@ -1,0 +1,42 @@
+<div class="col-md-12">
+	<h1>Route Details</h1>
+</div>
+<div class="col-md-12">
+	<p id="notice"><%= notice %></p>
+</div>
+
+<div class="col-md-12">
+	<table class="table">
+		<tr>
+			<td><strong>Start point:</strong></td>
+			<td><%= @route.start_point %></td>
+		</tr>
+		<tr>
+			<td><strong>End point:</strong></td>
+			<td><%= @route.end_point %></td>
+		</tr>
+		<tr>
+			<td><strong>Vehicle:</strong></td>
+			<td><%= link_to @route.vehicle.plate, vehicle_path(@route.vehicle_id) %></td>
+		</tr>
+		<tr>
+			<td><strong>Passenger:</strong></td>
+			<td><%= link_to @route.passenger.name, passenger_path(@route.passenger_id) %></td>
+		</tr>
+		<tr>
+			<td><strong>Date:</strong></td>
+			<td><%= @route.created_at %></td>
+		</tr>
+		<tr>
+			<td><strong>Status:</strong></td>
+			<td><%= @route.status_to_s %></td>
+		</tr>
+	</table>
+	<div class="col-md-12" style="text-align: right;">
+		<%= link_to 'Edit', edit_route_path(@route) %> |
+		<%= link_to 'Back', routes_path %>
+	</div>
+</div>
+
+
+
